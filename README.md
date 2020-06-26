@@ -208,6 +208,7 @@ Unable to initialize adlm.
 Internal Error Message: <Service not installed.>
 Error Code: <20>
 ```
+![adlm init error](https://github.com/bxbrenden/Maya-2020-Installation-CentOS-8/blob/master/adlm-failed-init.png)
 
 21. Read troubleshooting steps from Autodesk Forums
 https://forums.autodesk.com/t5/installation-licensing/maya-2020-centos-7-7-unable-to-initialize-adlm/td-p/9223338
