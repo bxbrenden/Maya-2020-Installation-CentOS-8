@@ -170,7 +170,7 @@ Maya starts!
 ```
 ![Maya starts after installing dependencies](https://github.com/bxbrenden/Maya-2020-Installation-CentOS-8/blob/master/maya-starts.png)
 
-18. Click `Single User` to register license
+18. Click `Single-User` to register license
 Maya crashes with an error:
 ```bash
 [brenden@errmac Packages]$ maya
@@ -178,4 +178,25 @@ maya: Autodesk Maya 2020
 A licensing error occurred that Autodesk systems were not able to handle for you. Please contact Autodesk Customer Support for help in resolving this error.
 adlsdkAuthorize returned with error code: ADLSDK_STATUS_LICENSE_CHECKOUT_ERROR
 The default location for log files to help diagnose the issue is: /usr/tmp
+```
+
+19. Check logs for failure details
+
+Contents of `/usr/tmp/MayaCLM-25-06-2020.log`:
+```
+2020-06-25 17:44:11: ====== BEGIN MAYA CLM LICENSE DIAGNOSTICS (level 2) ======
+2020-06-25 17:44:11: INFO: MAYA VERSION: Autodesk Maya 2020
+2020-06-25 17:44:11: INFO: Desktop Licensing Runtime Version: 2.6.3.31
+2020-06-25 17:44:11: INFO: Desktop Licensing API version in Maya: 2.6.3.31
+2020-06-25 17:44:11: INFO: initialize: GetInstance (Success)
+2020-06-25 17:45:22: ====== BEGIN MAYA CLM LICENSE DIAGNOSTICS (level 2) ======
+2020-06-25 17:45:22: INFO: MAYA VERSION: Autodesk Maya 2020
+2020-06-25 17:45:22: INFO: Desktop Licensing Runtime Version: 2.6.3.31
+2020-06-25 17:45:22: INFO: Desktop Licensing API version in Maya: 2.6.3.31
+2020-06-25 17:45:22: INFO: initialize: GetInstance (Success)
+2020-06-25 17:45:27: INFO: Received LicenseUpdateCallback for Maya 2020 (ADLSDK_UPDATE_REASON_LICENSE_UPDATE): NOT Authorized
+2020-06-25 17:45:27: ERROR: Error Information: Maya 2020 : command execution error
+2020-06-25 17:45:27: ERROR: adlsdkAuthorize returned with error code: ADLSDK_STATUS_LICENSE_CHECKOUT_ERROR
+2020-06-25 17:45:27: ERROR: checkinLicense: unable to release authentication handle
+2020-06-25 17:45:27: INFO: shutdown: normal exit
 ```
