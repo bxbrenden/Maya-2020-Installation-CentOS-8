@@ -202,6 +202,7 @@ Contents of `/usr/tmp/MayaCLM-25-06-2020.log`:
 ```
 
 20. Click `enter a serial number` to try alternate route
+
 Clicked `enter a serial number` and got an error:
 ```
 Unable to initialize adlm.
