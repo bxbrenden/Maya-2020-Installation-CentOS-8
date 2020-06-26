@@ -73,4 +73,4 @@ sudo yum install adsklicensing9.2.1.2399-0-0.x86_64.rpm
 ```
 
 This installs and configures a `systemd` service as seen below:
-![adsklicensing systemd service screenshot]()
+![adsklicensing systemd service screenshot](https://github.com/bxbrenden/Maya-2020-Installation-CentOS-8/blob/master/adsklicensing.png)
