@@ -234,7 +234,7 @@ ERROR: Unable to locate anchor service to install, please specify correctly on c
 23. Try to run Flexnet service manually
 Running the service returns the confusing error 'No such file or directory` even though it exists.
 
-This [StackOverlfow post](https://stackoverflow.com/questions/2716702/no-such-file-or-directory-error-when-executing-a-binary) indicates there may be missing libraries.
+This [StackOverflow post](https://stackoverflow.com/questions/2716702/no-such-file-or-directory-error-when-executing-a-binary) indicates there may be missing libraries.
 ```bash
 [brenden@errmac bin]$ pwd
 /opt/Autodesk/Adlm/FLEXnet/bin
