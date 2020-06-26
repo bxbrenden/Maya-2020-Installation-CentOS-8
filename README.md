@@ -168,7 +168,7 @@ Maya starts!
 
 [brenden@errmac Packages]$ maya
 ```
-![Maya starts after installing dependencies]()
+![Maya starts after installing dependencies](https://github.com/bxbrenden/Maya-2020-Installation-CentOS-8/blob/master/maya-starts.png)
 
 18. Click `Single User` to register license
 Maya crashes with an error:
