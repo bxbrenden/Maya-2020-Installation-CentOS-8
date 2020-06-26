@@ -263,6 +263,7 @@ Filename    : /lib64/ld-lsb-x86-64.so.3
 ```
 
 25. Install `redhat-lsb-core` and try again
+`FNPLicensingService` runs successfully!
 ```bash
 [brenden@errmac bin]$ sudo dnf install redhat-lsb-core-4.1-47.el8.x86_64
 
@@ -280,3 +281,79 @@ Licensing Service daemon activated
 root       46841    6954  0 18:17 ?        00:00:00 ./FNPLicensingService -r
 brenden    46864   16926  0 18:17 pts/0    00:00:00 grep --color=auto -i fnp
 ```
+
+26. Try re-running Flexnet tools manually
+
+Running `sudo ./install_fnp.sh` still fails with the `missing anchor service` error. 
+
+So, I tried running `sudo ./install_fnp.sh --help` to see if there were help docs.
+
+The help looked like this:
+```bash
+install_fnp.sh [--help] [--cert] [--nolsb] [--nodaemon] [ <path to FNLS> ]
+```
+ The `[ <path to FNLS> ] option looked promising, so I pointed it at the `FNPLicensingService` file that was now able to run:
+```bash
+[brenden@errmac bin]$ sudo ./install_fnp.sh `pwd`/FNPLicensingService
+
+Checking for active FNP Licensing Service Daemon...
+Need to restart FNP Licensing Service Daemon
+Licensing Service daemon terminated
+
+FNP Licensing Service Daemon checks complete
+
+Checking for SELinux
+*** WARNING: Running with SELINUX enabled can affect the operation of the FlexNet Licensing Service
+***          Refer to the FlexNet Publisher Documentation for further details
+SELinux checks complete
+
+Checking LSB compatibility...
+LSB compatibility checks complete
+
+Installing licensing service from /opt/Autodesk/Adlm/FLEXnet/bin/FNPLicensingService to /usr/local/share/FNP/service64/11.16.0
+
+Checking system for trusted storage area...
+Configuring for Linux, Trusted Storage path /usr/local/share/macrovision/storage...
+chattr: No such file or directory while trying to stat /usr/local/share/macrovision/storage/FLEXnet
+chown: cannot access '/usr/local/share/macrovision/storage/FLEXnet': No such file or directory
+/usr/local/share/macrovision/storage already exists...
+Setting permissions on /usr/local/share/macrovision/storage...
+Permissions set...
+
+
+Checking system for Replicated Anchor area...
+Configuring Replicated Anchor area...
+Replicated Anchor area already exists...
+Setting permissions on Replicated Anchor area...
+Replicated Anchor area permissions set...
+Configuring Temporary area...
+Temporary area already exists...
+Setting permissions on Temporary area...
+Temporary area permissions set...
+Setting FUSE configuration
+ERROR: FlexNetFs mount-point inaccessible because of /dev/shm file permissions
+
+Starting FNPLicensingService daemon owner by brenden
+Licensing Service daemon activated
+
+Checking FNPLicensingService is running
+Configuration completed successfully.
+```
+
+27. Try clicking `enter a serial number` again
+
+Clicking `enter a serial number` on the installation wizard now works!
+![enter a serial number]()
+
+28. Enter a serial number at the activation page
+
+The page prompts you to activate Maya
+![Maya activation page]()
+
+29. Activation is successful
+
+The wizard shows a success message. Click `Finish`
+![]()
+
+30. Maya starts!
+![Maya starts]()
