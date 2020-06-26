@@ -3,6 +3,7 @@
 ## Autodesk Instructions Followed
 - [Install Maya on Linux using the rpm Package](https://knowledge.autodesk.com/support/maya/troubleshooting/caas/CloudHelp/cloudhelp/2020/ENU/Installation-Maya/files/GUID-E7E054E1-0E32-4B3C-88F9-BF820EB45BE5-htm.html)
 - [Installing Arnold for Maya on Linux](https://docs.arnoldrenderer.com/display/A5AFMUG/Installing+Arnold+for+Maya+on+Linux)
+- [Additional required Linux packages for Maya installation](https://knowledge.autodesk.com/support/maya/troubleshooting/caas/CloudHelp/cloudhelp/2020/ENU/Installation-Maya/files/GUID-D2B5433C-E0D2-421B-9BD8-24FED217FD7F-htm.html)
 
 ## Steps Attempted for Installation
 1. Start with fresh CentOS 8 installation
