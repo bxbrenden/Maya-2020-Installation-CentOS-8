@@ -74,3 +74,108 @@ sudo yum install adsklicensing9.2.1.2399-0-0.x86_64.rpm
 
 This installs and configures a `systemd` service as seen below:
 ![adsklicensing systemd service screenshot](https://github.com/bxbrenden/Maya-2020-Installation-CentOS-8/blob/master/adsklicensing.png)
+
+9. Install ADLM Flexnet IPV6 Server
+```bash
+sudo yum install adlmflexnetserverIPV6-17.0.50-0.x86_64.rpm
+```
+
+10. Install ADLM Flexnet Client
+```bash
+sudo yum install adlmflexnetclient-17.0.49-0.x86_64.rpm
+```
+
+11. Install the Maya rpm
+```bash
+sudo yum install Maya2020_64-2020.0-235.x86_64.rpm
+```
+
+12. Verify Maya installation
+```bash
+[brenden@errmac Packages]$ /opt/Autodesk/AdskLicensing/9.2.1.2399/helper/AdskLicensingInstHelper list
+[
+  {
+    "feature_id": "MAYA",
+    "def_prod_key": "<REDACTED>",
+    "def_prod_ver": "2020.0.0.F",
+    "sel_prod_key": "<REDACTED>",
+    "sel_prod_ver": "2020.0.0.F",
+    "supported_lic_methods": [
+      2,
+      1,
+      4
+    ],
+    "lic_servers": [
+      ""
+    ],
+    "serial_number_sa": "000-00000000",
+    "serial_number_nw": "000-00000000",
+    "def_prod_code": "MAYA",
+    "sel_prod_code": "MAYA"
+  }
+]
+```
+
+13. Install Dependencies
+```bash
+sudo yum install xorg-x11-fonts-ISO8859-1-100dpi
+sudo yum install xorg-x11-fonts-ISO8859-1-75dpi 
+sudo dnf install epel-release.noarch   #yum is just a symlink to dnf
+sudo dnf makecache
+sudo yum install audiofile audiofile-devel
+```
+
+13. Attempt to start Maya
+Run fails due to missing `libpng15.so.15`.
+```bash
+[brenden@errmac Packages]$ which maya
+/usr/local/bin/maya
+[brenden@errmac Packages]$ maya
+/usr/autodesk/maya2020/bin/maya.bin: error while loading shared libraries: libpng15.so.15: cannot open shared object file: No such file or directory
+```
+
+14. Install libpng15.so.15 and try to start Maya
+Run fails due to missing `libGLU.so.1`
+```bash
+[brenden@errmac Packages]$ sudo yum install libpng15-1.5.30-7.el8.x86_64
+
+[brenden@errmac Packages]$ maya
+/usr/autodesk/maya2020/bin/maya.bin: error while loading shared libraries: libGLU.so.1: cannot open shared object file: No such file or directory
+```
+
+15. Install libGLU and try to start Maya
+Run fails due to missing `libssl.so.10`
+```bash
+[brenden@errmac Packages]$ sudo yum install libpng15-1.5.30-7.el8.x86_64
+
+[brenden@errmac Packages]$ maya
+/usr/autodesk/maya2020/bin/maya.bin: error while loading shared libraries: libssl.so.10: cannot open shared object file: No such file or directory
+```
+
+16. Install libssl and try to start Maya
+Run fails due to missing `libXp.so.6`
+```bash
+[brenden@errmac Packages]$ sudo yum install compat-openssl10-1:1.0.2o-3.el8.x86_64
+
+[brenden@errmac Packages]$ maya
+/usr/autodesk/maya2020/bin/maya.bin: error while loading shared libraries: libXp.so.6: cannot open shared object file: No such file or directory
+```
+
+17. Install libXp and try to start Maya
+Maya starts!
+```bash
+[brenden@errmac Packages]$ sudo yum install libXp-1.0.3-3.el8.x86_64
+
+[brenden@errmac Packages]$ maya
+```
+![Maya starts after installing dependencies]()
+
+18. Click `Single User` to register license
+Maya crashes with an error:
+```bash
+[brenden@errmac Packages]$ maya
+maya: Autodesk Maya 2020
+A licensing error occurred that Autodesk systems were not able to handle for you. Please contact Autodesk Customer Support for help in resolving this error.
+adlsdkAuthorize returned with error code: ADLSDK_STATUS_LICENSE_CHECKOUT_ERROR
+The default location for log files to help diagnose the issue is: /usr/tmp
+```
