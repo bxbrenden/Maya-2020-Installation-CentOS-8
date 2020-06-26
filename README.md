@@ -201,5 +201,80 @@ Contents of `/usr/tmp/MayaCLM-25-06-2020.log`:
 2020-06-25 17:45:27: INFO: shutdown: normal exit
 ```
 
-20. Try troubleshooting steps from Autodesk Forums
+20. Click `enter a serial number` to try alternate route
+Clicked `enter a serial number` and got an error:
+```
+Unable to initialize adlm.
+Internal Error Message: <Service not installed.>
+Error Code: <20>
+```
+
+21. Read troubleshooting steps from Autodesk Forums
 https://forums.autodesk.com/t5/installation-licensing/maya-2020-centos-7-7-unable-to-initialize-adlm/td-p/9223338
+
+22. Try manual installation of Flexnet toolkit
+
+Running the two scripts suggested in the [forum post](https://forums.autodesk.com/t5/installation-licensing/maya-2020-centos-7-7-unable-to-initialize-adlm/td-p/9223338) seems to indicate the Flexnet service is not running:
+```bash
+[brenden@errmac bin]$ sudo /opt/Autodesk/Adlm/FLEXnet/bin/toolkitinstall.sh
+
+Checking system...
+Configuring for Linux, Trusted Storage path /usr/local/share/macrovision/storage...
+/usr/local/share/macrovision/storage already exists...
+Setting permissions on /usr/local/share/macrovision/storage...
+Permissions set...
+Configuration completed successfully.
+
+[brenden@errmac bin]$ sudo ./install_fnp.sh 
+ERROR: Unable to locate anchor service to install, please specify correctly on command line
+```
+
+23. Try to run Flexnet service manually
+Running the service returns the confusing error 'No such file or directory` even though it exists.
+
+This [StackOverlfow post](https://stackoverflow.com/questions/2716702/no-such-file-or-directory-error-when-executing-a-binary) indicates there may be missing libraries.
+```bash
+[brenden@errmac bin]$ pwd
+/opt/Autodesk/Adlm/FLEXnet/bin
+[brenden@errmac bin]$ ls
+FNPLicensingService  install_fnp.sh  toolkitinstall.sh
+[brenden@errmac bin]$ sudo ./FNPLicensingService 
+sudo: unable to execute ./FNPLicensingService: No such file or directory
+[brenden@errmac bin]$ file FNPLicensingService 
+FNPLicensingService: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-lsb-x86-64.so.3, for GNU/Linux 2.6.18, stripped
+```
+
+24. Try to find missing libraries
+Using the `readelf -a` command and grepping (ignore case) for `request` finds that the `ld-lsb-x86-64.so.3` file is missing.
+```bash
+[brenden@errmac bin]$ readelf -a FNPLicensingService  | grep -i request
+      [Requesting program interpreter: /lib64/ld-lsb-x86-64.so.3]
+[brenden@errmac bin]$ file /lib64/ld-lsb-x86-64.so.3
+/lib64/ld-lsb-x86-64.so.3: cannot open `/lib64/ld-lsb-x86-64.so.3' (No such file or directory)
+
+[brenden@errmac bin]$ sudo dnf whatprovides "*/ld-lsb-x86-64.so.3"
+Last metadata expiration check: 0:37:12 ago on Thu 25 Jun 2020 05:32:38 PM PDT.
+redhat-lsb-core-4.1-47.el8.x86_64 : LSB Core module support
+Repo        : AppStream
+Matched from:
+Filename    : /lib64/ld-lsb-x86-64.so.3
+```
+
+25. Install `redhat-lsb-core` and try again
+```bash
+[brenden@errmac bin]$ sudo dnf install redhat-lsb-core-4.1-47.el8.x86_64
+
+[brenden@errmac bin]$ sudo ./FNPLicensingService 
+FNPLicensingService -{rkhs}
+   -r    Run the FNPLicensingService daemon
+	-k    Kill the FNPLicensingService daemon
+   -s    Print the status of the  FNPLicensingService daemon
+   -h    Print help information
+
+[brenden@errmac bin]$ sudo ./FNPLicensingService -r
+Licensing Service daemon activated
+
+[brenden@errmac bin]$ ps -ef | grep -i fnp
+root       46841    6954  0 18:17 ?        00:00:00 ./FNPLicensingService -r
+brenden    46864   16926  0 18:17 pts/0    00:00:00 grep --color=auto -i fnp
+```
