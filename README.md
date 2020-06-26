@@ -162,7 +162,7 @@ Run fails due to missing `libXp.so.6`
 ```
 
 17. Install libXp and try to start Maya
-Maya starts!
+Maya installation wizard starts this time!
 ```bash
 [brenden@errmac Packages]$ sudo yum install libXp-1.0.3-3.el8.x86_64
 
@@ -343,17 +343,17 @@ Configuration completed successfully.
 27. Try clicking `enter a serial number` again
 
 Clicking `enter a serial number` on the installation wizard now works!
-![enter a serial number]()
+![enter a serial number](https://github.com/bxbrenden/Maya-2020-Installation-CentOS-8/blob/master/enter-license-works.png)
 
 28. Enter a serial number at the activation page
 
 The page prompts you to activate Maya
-![Maya activation page]()
+![Maya activation page](https://github.com/bxbrenden/Maya-2020-Installation-CentOS-8/blob/master/license-activation.png)
 
 29. Activation is successful
 
 The wizard shows a success message. Click `Finish`
-![]()
+![](https://github.com/bxbrenden/Maya-2020-Installation-CentOS-8/blob/master/license-activated.png)
 
 30. Maya starts!
-![Maya starts]()
+![Maya starts](https://github.com/bxbrenden/Maya-2020-Installation-CentOS-8/blob/master/maya-finally-starts.png)
