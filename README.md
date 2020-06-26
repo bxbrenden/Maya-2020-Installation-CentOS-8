@@ -200,3 +200,6 @@ Contents of `/usr/tmp/MayaCLM-25-06-2020.log`:
 2020-06-25 17:45:27: ERROR: checkinLicense: unable to release authentication handle
 2020-06-25 17:45:27: INFO: shutdown: normal exit
 ```
+
+20. Try troubleshooting steps from Autodesk Forums
+https://forums.autodesk.com/t5/installation-licensing/maya-2020-centos-7-7-unable-to-initialize-adlm/td-p/9223338
