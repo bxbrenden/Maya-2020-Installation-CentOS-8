@@ -127,6 +127,7 @@ sudo yum install audiofile audiofile-devel
 ```
 
 13. Attempt to start Maya
+
 Run fails due to missing `libpng15.so.15`.
 ```bash
 [brenden@errmac Packages]$ which maya
@@ -136,6 +137,7 @@ Run fails due to missing `libpng15.so.15`.
 ```
 
 14. Install libpng15.so.15 and try to start Maya
+
 Run fails due to missing `libGLU.so.1`
 ```bash
 [brenden@errmac Packages]$ sudo yum install libpng15-1.5.30-7.el8.x86_64
@@ -145,6 +147,7 @@ Run fails due to missing `libGLU.so.1`
 ```
 
 15. Install libGLU and try to start Maya
+
 Run fails due to missing `libssl.so.10`
 ```bash
 [brenden@errmac Packages]$ sudo yum install libpng15-1.5.30-7.el8.x86_64
@@ -154,6 +157,7 @@ Run fails due to missing `libssl.so.10`
 ```
 
 16. Install libssl and try to start Maya
+
 Run fails due to missing `libXp.so.6`
 ```bash
 [brenden@errmac Packages]$ sudo yum install compat-openssl10-1:1.0.2o-3.el8.x86_64
@@ -163,6 +167,7 @@ Run fails due to missing `libXp.so.6`
 ```
 
 17. Install libXp and try to start Maya
+
 Maya installation wizard starts this time!
 ```bash
 [brenden@errmac Packages]$ sudo yum install libXp-1.0.3-3.el8.x86_64
@@ -172,6 +177,7 @@ Maya installation wizard starts this time!
 ![Maya starts after installing dependencies](https://github.com/bxbrenden/Maya-2020-Installation-CentOS-8/blob/master/maya-starts.png)
 
 18. Click `Single-User` to register license
+
 Maya crashes with an error:
 ```bash
 [brenden@errmac Packages]$ maya
